@@ -16,8 +16,8 @@ function Cart() {
     <>
       <Navbar />
       <div className="  max-h-[100%]">
-        <div className="flex">
-          <div className=" w-2/3 flex h-[90vh] overflow-y-scroll flex-col  ">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-2/3 h-[90vh] overflow-y-scroll ">
             <div className="bg-white sticky top-0 z-50">
               <div className="flex justify-between">
                 <h1 className="text-2xl font-bold p-3 m-3  ">
@@ -43,7 +43,7 @@ function Cart() {
               </div>
             )}
           </div>
-          <div className="bg-gray-300 w-1/2 ">
+          <div className="w-full lg:w-1/2 bg-gray-300">
             <div className="mx-10 bg-white h-2/3 my-7">
               <h1 className="text-2xl font-bold p-3 text-center ">
                 Price Details

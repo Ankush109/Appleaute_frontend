@@ -12,7 +12,7 @@ function Product({ id, name, price, image, description, category }) {
   };
   return (
     <>
-      <div className="bg-white sm:w-1/2  lg:w-1/3 h-full flex flex-col mx-4 my-4">
+      <div className="bg-white sm:w-4/5  lg:w-1/3 h-full flex flex-col mx-4 my-4">
         <div className="flex flex-col ">
           <div className="m-3 p-2">
             <img

@@ -26,9 +26,6 @@ function App() {
         toast.success("Please Login");
       }
     }
-    if (isJWTValid()) {
-      toast.success("Welcome Back!");
-    }
   }, []);
 
   const MAX_TOAST_LIMIT = 2;
