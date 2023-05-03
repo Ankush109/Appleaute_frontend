@@ -11,7 +11,7 @@ const AuthAPI = () => {
     });
   } else {
     return axios.create({
-      baseURL: `http://localhost:5000/v1/`,
+      baseURL: `https://localhost:5000/v1/`,
       headers: {
         authorization: `Bearer }`,
         "Content-Type": "application/json",
@@ -19,28 +19,27 @@ const AuthAPI = () => {
     });
   }
 };
-const GetCateogry = async () => {
-  const { data } = await AuthAPI().get("/products/get-categories");
+
+const deleteCart = async (productId) => {
+  const { data } = await AuthAPI().delete(`/cart/delete-cart/`, productId);
   return data;
 };
-const GetProduct = async () => {
-  const { data } = await AuthAPI().get("/products/get-products");
+const GetUserCart = async () => {
+  const { data } = await AuthAPI().get("/cart/get-cart");
   return data;
 };
-const GetProductQuery = () =>
+const AddToCart = async (productId) => {
+  const { data } = await AuthAPI().post("/cart/add-cart", {
+    productId: productId,
+  });
+  return data;
+};
+const GetUserCartQuery = () =>
   useQuery({
-    queryKey: ["get-product"],
-    queryFn: () => GetProduct(),
+    queryKey: ["get-user-cart"],
+    queryFn: () => GetUserCart(),
     select: (data) => {
-      return data;
+      return data.message;
     },
   });
-const GetCategoryQuery = () =>
-  useQuery({
-    queryKey: ["get-category"],
-    queryFn: () => GetCateogry(),
-    select: (data) => {
-      return data;
-    },
-  });
-export { GetProductQuery, GetCategoryQuery };
+export { GetUserCartQuery, AddToCart, deleteCart };

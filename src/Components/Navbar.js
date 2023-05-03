@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetUserQuery } from "../api/user";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import { GetUserCartQuery } from "../api/cart";
 
 function Navbar() {
   const userQuery = GetUserQuery();
+  const GetCartData = GetUserCartQuery();
+  useEffect(() => {
+    GetCartData.refetch();
+  }, [GetCartData.data]);
   const navigate = useNavigate();
   return (
-    <div>
-      <div className=" bg-blue-500  p-4 ">
+    <div className="sticky top-0 z-50">
+      <div className=" bg-blue-500   p-4 ">
         <div className="flex justify-between ">
           <div>
             <a href="/">
@@ -22,6 +27,10 @@ function Navbar() {
               <a href="/cart">
                 <AiOutlineShoppingCart size={25} />
               </a>
+              <span className="text-white  font-bold">
+                ({GetCartData.data?.length})
+              </span>
+
               <li
                 onClick={() => {
                   localStorage.removeItem("token");
@@ -31,7 +40,9 @@ function Navbar() {
               >
                 Logout
               </li>
-              <li>Orders</li>
+              <a href="/orders">
+                <li className="font-bold hover:cursor-pointer">Orders</li>
+              </a>
             </ul>
           </div>
         </div>
